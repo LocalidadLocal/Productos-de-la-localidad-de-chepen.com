@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localidad Shopping</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #41b883;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section.spot,
+        section.productos {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #41b883;
+        }
+
+        .productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .producto {
+            width: 300px;
+            margin: 50px;
+            padding: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .producto:hover {
+            transform: scale(1.05);
+        }
+
+        .producto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #41b883;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .producto h3,
+        .producto p,
+        .producto .precio {
+            margin: 20px;
+        }
+
+        .producto button {
+            width: 100%;
+            background-color: #41b883;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .producto button:hover {
+            background-color: #398e77;
+        }
+
+        #carrito {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 0 8px;
+            transition: transform 0.3s;
+            transform: translateX(100%);
+        }
+
+        #carrito.mostrar {
+            transform: translateX(0);
+        }
+
+        #lista-carrito {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #total {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        #carrito button {
+            width: 100%;
+            background-color: #41b883;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #carrito button:hover {
+            background-color: #398e77;
+        }
+
+        footer {
+            background-color: #41b883;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nuevos estilos y detalles */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+            background: url('background.jpg') center/cover no-repeat fixed;
+            animation: backgroundAnimation 120s infinite linear;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Fondo animado -->
+    <div class="background-animation"></div>
+
+    <header>
+        <h1>Localidad Shopping</h1>
+    </header>
+
+    <section class="spot">
+        <h2>Descubre nuestro Spot</h2>
+        <video controls width="100%" id="miVideo">
+            <source src="q.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+        <p class="descargar" id="descargar">
+            <a href="q.mp4" download>Descargar Video</a>
+        </p>
+        <button onclick="compartirVideo()">Compartir Video</button>
+        <p>¡Bienvenido a nuestro spot! Aquí encontrarás información relevante sobre nuestros productos y servicios.</p>
+        <p>Descubre productos frescos de la <a class="localidad" href="https://es.wikipedia.org/wiki/Chep%C3%A9n" target="_blank">localidad de Chepén</a> y aprende sobre alimentación saludable.</p>
+    </section>
+
+    <!-- Nueva sección después del spot -->
+    <section class="nueva-seccion">
+        <h2>Explora Nuestras Ofertas Especiales</h2>
+        <p>Sumérgete en nuestras ofertas especiales de la temporada. Desde frutas frescas hasta verduras orgánicas, tenemos algo para todos. <a href="s.html">¡Explora ahora!</a></p>
+    </section>
+
+   
+
+    <section class="productos">
+        <h2>Nuestros Productos</h2>
+
+        <div class="producto">
+            <img src="platano.jpg" alt="Fruta 1">
+            <h3>Platano</h3>
+            <p class="precio">S/1.00/3 Unidades</p>
+            <button onclick="agregarAlCarrito('Platano', 1.00)">Agregar al Carrito</button>
+        </div>
+
+        <div class="producto">
+            <img src="limon.jpeg" alt="Verdura 1">
+            <h3>Limon</h3>
+            <p class="precio">S/7/Kilo</p>
+            <button onclick="agregarAlCarrito('Limon', 7.00)">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="pimiento.jpeg" alt="Verdura 1">
+            <h3>Pimiento</h3>
+            <p class="precio">S/4/Kilo</p>
+            <button onclick="agregarAlCarrito('Pimiento', 4)">Agregar al Carrito</button>
+        </div>  <div class="producto">
+            <img src="zapallo.jpeg" alt="Verdura 1">
+            <h3>Zapallo</h3>
+            <p class="precio">$2.00/Kilo</p>
+            <button onclick="agregarAlCarrito('Zapallo', 1.99)"> 
+                Agregar al Carrito</button>
+        </div>  <div class="producto">
+            <img src="palta chepen.jpg" alt="Verdura 1">
+            <h3>Palta</h3>
+            <p class="precio">S/1.00/Unidad</p>
+            <button onclick="agregarAlCarrito('Palta', 1.00)">Agregar al Carrito</button>
+        </div>  <div class="producto">
+            <img src="mangos chepen.jpeg" alt="Verdura 1">
+            <h3>mangos</h3>
+            <p class="precio">S/4.50.kilo</p>
+            <button onclick="agregarAlCarrito('Mangos', S/4.50)">Agregar al Carrito</button>
+        </div>  <div class="producto">
+            <img src="esparrago.jpeg" alt="Verdura 1">
+            <h3>Esparragos</h3>
+            <p class="precio">S/16.00</p>
+            <button onclick="agregarAlCarrito('Esparragos', 16.00)">Agregar al Carrito</button>
+        </div>  <div class="producto">
+            <img src="uva.jpg" alt="Verdura 1">
+            <h3>Uva</h3>
+            <p class="precio">S/6.00/Kilo</p>
+            <button onclick="agregarAlCarrito('Uva', 6.00)">Agregar al Carrito</button>
+        </div>  <div class="producto">
+            <img src="zanahoria.jpeg" alt="Verdura 1">
+            <h3>Zanahoria</h3>
+            <p class="precio">S/3.00/Kilo</p>
+            <button onclick="agregarAlCarrito('Zanahoria', 3.00)">Agregar al Carrito</button>
+        </div>  <div class="producto">
+            <img src="pera.jpg" alt="Verdura 1">
+            <h3>Pera</h3>
+            <p class="precio">S/9/Kilo</p>
+            <button onclick="agregarAlCarrito('Pera', 9.00)">Agregar al Carrito</button>
+        </div>
+        <!-- Agrega más productos según sea necesario -->
+
+    </section>
+        <!-- Continuación de la sección de productos -->
+        <!-- Agrega más productos según sea necesario -->
+    </section>
+
+    <aside id="carrito" class="ocultar-carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="lista-carrito">
+            <!-- Los elementos del carrito se agregarán dinámicamente aquí -->
+        </ul>
+        <p id="total">Total: S/0.00</p>
+        <button onclick="realizarCompra()">Realizar Compra</button>
+    </aside>
+    
+
+    <footer>
+        <p>&copy; 2023 Localidad Shopping. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById("descargar").addEventListener("click", function () {
+            var link = document.createElement("a");
+            link.href = "q.mp4";
+            link.download = "q.mp4";
+            link.click();
+        });
+
+        function compartirVideo() {
+            var video = document.getElementById("miVideo");
+            var url = window.URL.createObjectURL(video.src);
+            navigator.share({
+                    title: "Compartir Video",
+                    text: "Mira este increíble video",
+                    url: "https://localidadlocal.github.io/Productos-de-la-localidad-de-Chepen.github.i/"
+                })
+                .then(() => console.log('Video compartido con éxito'))
+                .catch((error) => console.error('Error al compartir', error));
+        }
+
+        function agregarAlCarrito(producto, precio) {
+            var carrito = document.getElementById("lista-carrito");
+            var totalElement = document.getElementById("total");
+
+            var nuevoProducto = document.createElement("li");
+            nuevoProducto.textContent = producto + " - S/" + precio.toFixed(2);
+
+            carrito.appendChild(nuevoProducto);
+
+            var total = calcularTotal(carrito);
+            totalElement.textContent = "Total: S/" + total.toFixed(2);
+
+            // Mostrar el carrito
+            document.getElementById("carrito").classList.add("mostrar");
+        }
+
+        function calcularTotal(carrito) {
+            var total = 0;
+            for (var i = 0; i < carrito.children.length; i++) {
+                var precioTexto = carrito.children[i].textContent.split(" - S/")[1];
+                total += parseFloat(precioTexto);
+            }
+            return total;
+        }
+
+        function realizarCompra() {
+        var carrito = document.getElementById("lista-carrito");
+        alert("Compra realizada. Gracias por tu compra!");
+
+        // Limpiar el carrito
+        carrito.innerHTML = "";
+        document.getElementById("total").textContent = "Total: S/0.00";
+
+        // Ocultar el carrito después de realizar la compra
+        document.getElementById("carrito").classList.remove("mostrar-carrito");
+        document.getElementById("carrito").classList.add("ocultar-carrito");
+
+        // Redirigir a compra.html
+        window.location.href = 'compra.html';
+    
+        }
+    </script>
+
+    <div style="height: 200px;"></div><!-- Espacio adicional para evitar superposición con el pie de página -->
+
+</body>
+
+</html>

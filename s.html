@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercantiles - Productos Locales</title>
+    <style>
+        /* Estilos CSS omitidos para mayor claridad */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #41b883;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        h2 {
+            color: #41b883;
+            cursor: pointer;
+            padding: 10px;
+            margin: 0;
+            transition: background-color 0.3s;
+        }
+
+        p {
+            padding: 10px;
+            margin: 0;
+        }
+
+        footer {
+            background-color: #41b883;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .despedida {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fondo animado -->
+    <div class="background-animation"></div>
+
+    <header>
+        <h1>Mercantiles - Productos Locales</h1>
+    </header>
+
+    <main>
+        <section id="importanciaLocalidad">
+            <h2 onclick="toggleSection('importanciaLocalidad')">Importancia de Reconocer los Productos de tu Localidad</h2>
+            <p>¡Hola! Reconocer los productos de tu localidad es muy importante por varias razones. En primer lugar, consumir productos locales beneficia la economía de tu comunidad y genera empleo para tus vecinos 1. Además, reduce las emisiones de gases contaminantes a la atmósfera y los precios son más justos debido a la reducción de los costes de transporte y la ausencia de intermediarios 1. También es más fácil conocer la trazabilidad del producto, sabiendo de dónde vienen y cómo los han preparado 1.
+
+                Otro beneficio de consumir productos locales es que apoya el mercado de la región y ayuda a los emprendedores locales y a las marcas independientes a prosperar y generar más empleos 1. Además, consumir productos locales puede enriquecer la sociedad con personas realizadas, creativas, innovadoras y satisfechas 1.
+                
+                En resumen, consumir productos locales es beneficioso para la economía, el medio ambiente, la salud y las relaciones sociales.</p>
+        </section>
+
+        <section id="importanciaFrutas">
+            <h2 onclick="toggleSection('importanciaFrutas')">Importancia de las Frutas y Verduras</h2>
+            <p> Las frutas y verduras son imprescindibles para una buena salud, inclúyelas en tu alimentación para cubrir los requerimientos nutricionales. Las frutas y verduras son importantes para la salud porque aportan vitaminas, minerales y fibra. Inculcar el hábito de tomarlas es fundamental para cubrir los requerimientos nutricionales 1234.
+
+                Entre los beneficios de consumir frutas y verduras, se encuentran:
+                
+                Ayudan a mantener un peso saludable: las frutas y verduras son bajas en calorías y ricas en nutrientes, lo que contribuye a un control del peso 3.
+                Previenen enfermedades: el consumo de frutas y verduras ayuda a prevenir enfermedades como las cardiopatías, el cáncer, la diabetes y la obesidad 4.
+                Mejoran la digestión: las frutas y verduras son ricas en fibra, lo que ayuda a regular el tránsito intestinal y a mantener una buena salud digestiva 1.
+                Fortalecen el sistema inmunológico: las frutas y verduras son ricas en vitaminas y antioxidantes, lo que ayuda a fortalecer el sistema inmunológico y a combatir resfriados, estados gripales e infecciones 1.
+                Aportan energía: las frutas y verduras son ricas en hidratos de carbono, lo que las convierte en una fuente de energía saludable 1.</p>
+        </section>
+
+        <section id="despedida" class="despedida">
+            <h2 onclick="toggleSection('despedida')">¡Gracias por Visitar Mercantiles!</h2>
+            <p>Esperamos que hayas disfrutado explorando la variedad de productos locales disponibles en Mercantiles, hacemos lo posible por tu buena estadia en nuestra pagina,(red social). ¡Vuelve pronto y descubre más deliciosas opciones!</p>
+        </section>
+
+        <!-- Nuevo enlace para regresar a index.html -->
+        <a href="index.html">Volver a la página principal</a>
+    </main>
+
+    <footer>
+        <p>Pie de página - © 2023</p>
+    </footer>
+
+    <script>
+        function toggleSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section.style.opacity === "1") {
+                section.style.opacity = "0";
+                section.style.transform = "translateY(20px)";
+            } else {
+                section.style.opacity = "1";
+                section.style.transform = "translateY(0)";
+            }
+        }
+
+        document.addEventListener("scroll", function() {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                if (isElementInViewport(section)) {
+                    section.style.opacity = "1";
+                    section.style.transform = "translateY(0)";
+                }
+            });
+        });
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+    </script>
+
+</body>
+</html>
